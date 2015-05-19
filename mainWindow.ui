@@ -115,7 +115,7 @@
       <rect>
        <x>154</x>
        <y>10</y>
-       <width>148</width>
+       <width>85</width>
        <height>27</height>
       </rect>
      </property>
@@ -131,106 +131,6 @@
      <property name="sizeAdjustPolicy">
       <enum>QComboBox::AdjustToContents</enum>
      </property>
-     <item>
-      <property name="text">
-       <string>Dragons</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Humanoids</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Amphibians</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Birds</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Crustaceans</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Dinosaurs</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Extra-Terrestrials</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Fish</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Insects</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Legends</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Mammals</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Molluscs</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Mythical</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Plants</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Reptiles</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Spirits</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Undead</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Shape Changers</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Unknown</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Multiple</string>
-      </property>
-     </item>
     </widget>
     <widget class="QLabel" name="versionLabel">
      <property name="geometry">
@@ -279,121 +179,69 @@
     <widget class="QComboBox" name="subSpecies">
      <property name="geometry">
       <rect>
-       <x>310</x>
+       <x>340</x>
        <y>10</y>
-       <width>149</width>
+       <width>85</width>
        <height>27</height>
       </rect>
      </property>
      <property name="toolTip">
       <string>Subspecies</string>
      </property>
+     <property name="editable">
+      <bool>false</bool>
+     </property>
      <property name="sizeAdjustPolicy">
       <enum>QComboBox::AdjustToContents</enum>
      </property>
-     <item>
-      <property name="text">
-       <string>Amphiteres</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Draconids</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Dragonettes</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Eastern Dragons</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Faerie Dragons</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Hydra</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Dimar</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Dracolich</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Pernese Dragons</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Turtle Dragons</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Serpents</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Tarrasques</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Pseudodragons</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Wyverns</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Western Dragons</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Wyrms</string>
-      </property>
-     </item>
     </widget>
     <widget class="QComboBox" name="subSubSpecies">
      <property name="geometry">
       <rect>
-       <x>460</x>
+       <x>520</x>
        <y>10</y>
-       <width>121</width>
+       <width>85</width>
        <height>27</height>
       </rect>
+     </property>
+     <property name="toolTip">
+      <string>SubSubSpecies</string>
+     </property>
+     <property name="editable">
+      <bool>false</bool>
      </property>
      <property name="sizeAdjustPolicy">
       <enum>QComboBox::AdjustToContents</enum>
      </property>
-     <item>
-      <property name="text">
-       <string>Sea serpents</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Fire serpents</string>
-      </property>
-     </item>
+    </widget>
+    <widget class="QComboBox" name="gender">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>85</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Gender</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="subSubSubSpecies">
+     <property name="geometry">
+      <rect>
+       <x>670</x>
+       <y>10</y>
+       <width>85</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>SubSubSubSpecies</string>
+     </property>
+     <property name="editable">
+      <bool>false</bool>
+     </property>
     </widget>
    </widget>
    <widget class="QPushButton" name="copyButton">

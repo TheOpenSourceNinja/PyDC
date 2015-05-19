@@ -2,7 +2,7 @@
 #This file can be used from the command line
 
 import sys
-from PyDC-backend import DCTranslator
+from PyDC_backend import DCTranslator
 
 translator = DCTranslator()
 translator.decode( "" )
