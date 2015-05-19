@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#This file can be used by itself from the command line or as the back-end for the GUI.
+#This file is the back-end for the GUI and CLI programs.
 
 class DCTranslator:
 	def decode( self, coded ):
@@ -7,13 +7,18 @@ class DCTranslator:
 		if( type( coded ) is not str ):
 			return False
 		
+		coded = coded.strip()
+		
 		print( coded )
 		return True
 	
-	def encode( self ):
+	def encode( self, version ):
 		"Accepts several arguments. Processes them into a string. Invalid arguments are ignored."
-		return ""
-
-translator = DCTranslator()
-translator.decode( "" )
-print( translator.encode() )
+		
+		result = "DC"
+		if( version == 2 ):
+			result += str( version )
+		elif( version > 2 ):
+			result += str( version )
+		
+		return result
