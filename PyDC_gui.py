@@ -24,13 +24,43 @@ class gui:
 		self.ui.species.currentIndexChanged.connect( self.speciesSelected )
 		self.ui.subSpecies.currentIndexChanged.connect( self.subSpeciesSelected )
 		self.ui.subSubSpecies.currentIndexChanged.connect( self.subSubSpeciesSelected )
+		self.ui.lengthRadioOOM.toggled.connect( self.lengthRadioOOMToggled )
+		self.ui.lengthRadioExact.toggled.connect( self.lengthRadioExactToggled )
+		self.ui.lengthRadioUnspecified.toggled.connect( self.lengthRadioUnspecifiedToggled )
 		
+		#Things wouldn't look right if we don't call these functions
 		self.speciesSelected( 0 )
+		self.lengthRadioButtonsToggled( 0 ) #0 = Unspecified. Since the 'Unspecified' radio button is selected by default when the program starts, it doesn't call this function, so we do.
 		
+		#Filling in combo boxes
 		self.ui.species.addItems( self.translator.species )
 		self.ui.gender.addItems( self.translator.gender )
+		self.ui.lengthUnits.addItems( self.translator.lengthUnits )
+		self.ui.lengthMagnitude.addItems( self.translator.lengthMagnitude )
 		
 		sys.exit( self.app.exec_() )
+		
+	def lengthRadioButtonsToggled( self, which ):
+		self.ui.lengthMagnitude.setEnabled( False )
+		self.ui.length.setEnabled( False )
+		self.ui.lengthUnits.setEnabled( False )
+		self.ui.lengthModBox.setEnabled( False )
+		
+		if( which == 1 ): #Order of magnitude
+			self.ui.lengthMagnitude.setEnabled( True )
+		elif( which == 2 ): #Exact length
+			self.ui.length.setEnabled( True )
+			self.ui.lengthUnits.setEnabled( True )
+			self.ui.lengthModBox.setEnabled( True )
+	
+	def lengthRadioOOMToggled( self ):
+		self.lengthRadioButtonsToggled( 1 )
+	
+	def lengthRadioExactToggled( self ):
+		self.lengthRadioButtonsToggled( 2 )
+	
+	def lengthRadioUnspecifiedToggled( self ):
+		self.lengthRadioButtonsToggled( 0 )
 	
 	def setSubSpeciesList( self, newList ):
 		while self.ui.subSpecies.count() > 0:
@@ -91,13 +121,40 @@ class gui:
 		self.translator.decode( self.ui.DCTextBox.toPlainText() )
 	
 	def encode( self ):
+		whichLengthType = 0
+		if( self.ui.lengthRadioOOM.isChecked() ):
+			whichLengthType = 1
+		elif( self.ui.lengthRadioExact.isChecked() ):
+			whichLengthType = 2
+		
+		lengthNum = self.ui.length.value()
+		if( whichLengthType == 1 ):
+			lengthNum = self.ui.lengthMagnitude.currentIndex()
+		
+		lengthModifiers = []
+		if( self.ui.lengthModBox.isEnabled() and self.ui.lengthModBox.isChecked() ):
+			if( self.ui.lengthModArms.isChecked() ):
+				lengthModifiers.append( [ self.ui.armLength.value(), self.translator.lengthMods.index( "a" ) ] )
+			if( self.ui.lengthModLegs.isChecked() ):
+				lengthModifiers.append( [ self.ui.legLength.value(), self.translator.lengthMods.index( "l" ) ] )
+			if( self.ui.lengthModNeckAndHead.isChecked() ):
+				lengthModifiers.append( [ self.ui.neckAndHeadLength.value(), self.translator.lengthMods.index( "n" ) ] )
+			if( self.ui.lengthModTail.isChecked() ):
+				lengthModifiers.append( [ self.ui.tailLength.value(), self.translator.lengthMods.index( "t" ) ] )
+			if( self.ui.lengthModWings.isChecked() ):
+				lengthModifiers.append( [ self.ui.wingLength.value(), self.translator.lengthMods.index( "w" ) ] )
+		
 		encodedText = self.translator.encode(
-			self.ui.spinBox.value(), #DC version
+			self.ui.DCVersion.value(), #DC version
 			self.ui.species.currentIndex(),
 			self.ui.subSpecies.currentIndex(),
 			self.ui.subSubSpecies.currentIndex(),
 			self.ui.subSubSubSpecies.currentIndex(),
-			self.ui.gender.currentIndex()
+			self.ui.gender.currentIndex(),
+			whichLengthType,
+			lengthNum,
+			self.ui.lengthUnits.currentIndex(),
+			lengthModifiers
 		)
 		if( encodedText is not None ):
 			self.ui.DCTextBox.setPlainText( encodedText )

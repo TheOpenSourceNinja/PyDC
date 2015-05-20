@@ -114,6 +114,11 @@ class DCTranslator:
 	
 	gender = [ "f Female", "h Hermaphrodite", "m Male", "n Neuter", "p Pseudo-hermaphrodite", "~ Variable", "? Unknown" ]
 	
+	lengthMagnitude = [ "+++!|Celestial", "+++|Mistaken for mountain ranges", "++|Can't see own tail on a foggy day", "+|Godzilla-sized", "|Draco-sized", "-|Human-sized", "--|Dog-sized", "---|Pocket Dragon-sized", "---!|Microscopic", "~|Variable", "^|One-Dragon-sized" ]
+	lengthUnits = [ "i inches", "f feet", "y yards", "c centimeters", "m meters", "k kilometers" ]
+	
+	lengthMods = [ "a", "l", "n", "t", "w" ]
+	
 	def decode( self, coded ):
 		"Accepts a single string as the argument. Processes it. Returns true if processing worked or false if there was an error."
 		if( type( coded ) is not str ):
@@ -124,7 +129,7 @@ class DCTranslator:
 		print( coded )
 		return True
 	
-	def encode( self, version, speciesNum, subSpeciesNum, subSubSpeciesNum, subSubSubSpeciesNum, genderNum ):
+	def encode( self, version=2, speciesNum=0, subSpeciesNum=0, subSubSpeciesNum=0, subSubSubSpeciesNum=0, genderNum=0, whichLengthType=0, lengthNum=0, lengthUnitNum=0, lengthModifiers=[ [] ] ):
 		"Accepts several arguments. Processes them into a string. Invalid arguments are ignored."
 		
 		result = "DC"
@@ -147,6 +152,21 @@ class DCTranslator:
 			#Gender
 			result += " G"
 			result += self.gender[genderNum][:1]
+			
+			#Length
+			if( whichLengthType != 0 ): #0 is 'Unspecified'
+				result += " L"
+				if( whichLengthType == 1 ): #Order of Magnitude
+					result += self.lengthMagnitude[ lengthNum ][ :self.lengthMagnitude[ lengthNum ].find( "|" ) ]
+				else: #Exact measure
+					result += str( lengthNum )
+					result += self.lengthUnits[ lengthUnitNum ][ :1 ]
+				
+				for lm in lengthModifiers:
+					#if( len( lm ) == 2 ):
+						result += str( lm[ 0 ] )
+						result += self.lengthMods[ lm[ 1 ] ]
+					
 			
 		elif( version > 2 ):
 			result += str( version )
