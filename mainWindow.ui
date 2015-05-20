@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>771</width>
-    <height>522</height>
+    <height>438</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -89,131 +89,186 @@
      <string>Encode↑</string>
     </property>
    </widget>
-   <widget class="QFrame" name="decodedFrame">
+   <widget class="QPushButton" name="copyButton">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>180</y>
-      <width>771</width>
-      <height>341</height>
+      <x>250</x>
+      <y>150</y>
+      <width>71</width>
+      <height>27</height>
      </rect>
     </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
+    <property name="text">
+     <string>Copy 📋</string>
     </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
+   </widget>
+   <widget class="QPushButton" name="pasteButton">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>150</y>
+      <width>71</width>
+      <height>27</height>
+     </rect>
     </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+    <property name="text">
+     <string>Paste 📋</string>
     </property>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>70</y>
-       <width>371</width>
-       <height>211</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Length</string>
-     </property>
-     <widget class="QRadioButton" name="lengthRadioOOM">
+   </widget>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>180</y>
+      <width>751</width>
+      <height>251</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>6</number>
+    </property>
+    <widget class="QWidget" name="tabVersion">
+     <attribute name="title">
+      <string>DC version</string>
+     </attribute>
+     <widget class="QSpinBox" name="DCVersion">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>20</y>
-        <width>171</width>
-        <height>22</height>
+        <y>10</y>
+        <width>48</width>
+        <height>27</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Order of Magnitude</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="lengthRadioExact">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>131</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Exact Measure</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="lengthRadioUnspecified">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>60</y>
-        <width>117</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Unspecified</string>
-      </property>
-      <property name="checked">
+      <property name="wrapping">
        <bool>true</bool>
       </property>
-     </widget>
-     <widget class="QComboBox" name="lengthMagnitude">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>10</y>
-        <width>131</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>Length (Order of Magnitude)</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="lengthUnits">
-      <property name="geometry">
-       <rect>
-        <x>280</x>
-        <y>40</y>
-        <width>85</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>Length Units</string>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="length">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>40</y>
-        <width>91</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>Length (Exact Measure)</string>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::UpDownArrows</enum>
       </property>
       <property name="correctionMode">
        <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
       </property>
+      <property name="minimum">
+       <number>2</number>
+      </property>
+      <property name="maximum">
+       <number>2</number>
+      </property>
+      <property name="value">
+       <number>2</number>
+      </property>
      </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>311</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Only version 2 is supported right now.</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabSpecies">
+     <attribute name="title">
+      <string>Species</string>
+     </attribute>
+     <widget class="QWidget" name="horizontalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>751</width>
+        <height>211</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMinimumSize</enum>
+       </property>
+       <item>
+        <widget class="QComboBox" name="species">
+         <property name="toolTip">
+          <string>Species</string>
+         </property>
+         <property name="statusTip">
+          <string/>
+         </property>
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="subSpecies">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Subspecies</string>
+         </property>
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="subSubSpecies">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>SubSubSpecies</string>
+         </property>
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="subSubSubSpecies">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>SubSubSubSpecies</string>
+         </property>
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabLength">
+     <attribute name="title">
+      <string>Length</string>
+     </attribute>
      <widget class="QGroupBox" name="lengthModBox">
       <property name="enabled">
        <bool>false</bool>
       </property>
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>90</y>
+        <x>390</x>
+        <y>10</y>
         <width>351</width>
         <height>141</height>
        </rect>
@@ -373,117 +428,116 @@
        </widget>
       </widget>
      </widget>
-    </widget>
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>10</y>
-       <width>671</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Species</string>
-     </property>
-     <widget class="QWidget" name="horizontalLayoutWidget">
+     <widget class="QRadioButton" name="lengthRadioUnspecified">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
-        <width>641</width>
-        <height>41</height>
+        <y>60</y>
+        <width>117</width>
+        <height>22</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <property name="sizeConstraint">
-        <enum>QLayout::SetMinimumSize</enum>
-       </property>
-       <item>
-        <widget class="QComboBox" name="species">
-         <property name="toolTip">
-          <string>Species</string>
-         </property>
-         <property name="statusTip">
-          <string/>
-         </property>
-         <property name="editable">
-          <bool>false</bool>
-         </property>
-         <property name="sizeAdjustPolicy">
-          <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="subSpecies">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="toolTip">
-          <string>Subspecies</string>
-         </property>
-         <property name="editable">
-          <bool>false</bool>
-         </property>
-         <property name="sizeAdjustPolicy">
-          <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="subSubSpecies">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="toolTip">
-          <string>SubSubSpecies</string>
-         </property>
-         <property name="editable">
-          <bool>false</bool>
-         </property>
-         <property name="sizeAdjustPolicy">
-          <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="subSubSubSpecies">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="toolTip">
-          <string>SubSubSubSpecies</string>
-         </property>
-         <property name="editable">
-          <bool>false</bool>
-         </property>
-         <property name="sizeAdjustPolicy">
-          <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <property name="text">
+       <string>Unspecified</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="lengthRadioOOM">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>171</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Order of Magnitude</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="lengthRadioExact">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>131</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Exact Measure</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="length">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>40</y>
+        <width>91</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Length (Exact Measure)</string>
+      </property>
+      <property name="correctionMode">
+       <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="lengthMagnitude">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>10</y>
+        <width>131</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Length (Order of Magnitude)</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="lengthUnits">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>40</y>
+        <width>85</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Length Units</string>
+      </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_3">
-     <property name="geometry">
-      <rect>
-       <x>260</x>
-       <y>280</y>
-       <width>111</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="title">
+    <widget class="QWidget" name="tabWidth">
+     <attribute name="title">
+      <string>Width</string>
+     </attribute>
+     <widget class="QComboBox" name="width">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>741</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabGender">
+     <attribute name="title">
       <string>Gender</string>
-     </property>
+     </attribute>
      <widget class="QComboBox" name="gender">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>85</width>
+        <x>0</x>
+        <y>0</y>
+        <width>741</width>
         <height>27</height>
        </rect>
       </property>
@@ -492,82 +546,39 @@
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_4">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>81</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>DC version</string>
-     </property>
-     <widget class="QSpinBox" name="DCVersion">
+    <widget class="QWidget" name="tabWeight">
+     <attribute name="title">
+      <string>Weight</string>
+     </attribute>
+     <widget class="QComboBox" name="weightUnits">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>20</y>
-        <width>48</width>
+        <x>280</x>
+        <y>40</y>
+        <width>461</width>
         <height>27</height>
        </rect>
       </property>
-      <property name="wrapping">
-       <bool>true</bool>
+      <property name="toolTip">
+       <string>Weight Units</string>
       </property>
-      <property name="buttonSymbols">
-       <enum>QAbstractSpinBox::UpDownArrows</enum>
+     </widget>
+     <widget class="QSpinBox" name="weight">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>40</y>
+        <width>91</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Weight (Exact Measure)</string>
       </property>
       <property name="correctionMode">
        <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
       </property>
-      <property name="minimum">
-       <number>2</number>
-      </property>
-      <property name="maximum">
-       <number>2</number>
-      </property>
-      <property name="value">
-       <number>2</number>
-      </property>
      </widget>
-    </widget>
-    <widget class="QGroupBox" name="groupBox_5">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>290</y>
-       <width>241</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Width</string>
-     </property>
-     <widget class="QComboBox" name="width">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>0</y>
-        <width>181</width>
-        <height>27</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QGroupBox" name="groupBox_6">
-     <property name="geometry">
-      <rect>
-       <x>380</x>
-       <y>70</y>
-       <width>371</width>
-       <height>91</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Weight</string>
-     </property>
      <widget class="QRadioButton" name="weightRadioOOM">
       <property name="geometry">
        <rect>
@@ -579,6 +590,19 @@
       </property>
       <property name="text">
        <string>Order of Magnitude</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="weightMagnitude">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>10</y>
+        <width>561</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Weight (Order of Magnitude)</string>
       </property>
      </widget>
      <widget class="QRadioButton" name="weightRadioExact">
@@ -610,92 +634,17 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QComboBox" name="weightMagnitude">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>10</y>
-        <width>131</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>Weight (Order of Magnitude)</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="weightUnits">
-      <property name="geometry">
-       <rect>
-        <x>280</x>
-        <y>40</y>
-        <width>85</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>Weight Units</string>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="weight">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>40</y>
-        <width>91</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>Weight (Exact Measure)</string>
-      </property>
-      <property name="correctionMode">
-       <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
-      </property>
-     </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_7">
-     <property name="geometry">
-      <rect>
-       <x>380</x>
-       <y>160</y>
-       <width>381</width>
-       <height>171</height>
-      </rect>
-     </property>
-     <property name="title">
+    <widget class="QWidget" name="tabAppendages">
+     <attribute name="title">
       <string>Appendages</string>
-     </property>
-     <widget class="QListView" name="appendageList">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>60</y>
-        <width>381</width>
-        <height>101</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>List of appendages. Leave empty if you have a normal set of limbs for your species</string>
-      </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustToContents</enum>
-      </property>
-      <property name="dragEnabled">
-       <bool>true</bool>
-      </property>
-      <property name="alternatingRowColors">
-       <bool>true</bool>
-      </property>
-      <property name="selectionMode">
-       <enum>QAbstractItemView::MultiSelection</enum>
-      </property>
-     </widget>
+     </attribute>
      <widget class="QPushButton" name="addAppendage">
       <property name="geometry">
        <rect>
-        <x>110</x>
-        <y>0</y>
-        <width>271</width>
+        <x>400</x>
+        <y>10</y>
+        <width>331</width>
         <height>27</height>
        </rect>
       </property>
@@ -706,43 +655,140 @@
      <widget class="QPushButton" name="deleteAppendage">
       <property name="geometry">
        <rect>
-        <x>110</x>
-        <y>30</y>
-        <width>271</width>
+        <x>0</x>
+        <y>10</y>
+        <width>391</width>
         <height>27</height>
        </rect>
       </property>
       <property name="text">
-       <string>Delete appendage(s) ␡</string>
+       <string>Delete selected appendage(s) ␡</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="manyAppendage">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>140</y>
+        <width>181</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>!|I have many of these</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="appendageTypes">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>40</y>
+        <width>331</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="variableAppendage">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>180</y>
+        <width>101</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>~|Variable</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="webbedAppendage">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>80</y>
+        <width>331</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>^|Appendage ends in a webbed hand or foot</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="oneMoreAppendage">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>100</y>
+        <width>191</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>+|One more than normal</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="oneLessAppendage">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>120</y>
+        <width>181</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>-|One less than normal</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="thisManyAppendage">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>160</y>
+        <width>201</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>I have this many of these:</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="appendageList">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>40</y>
+        <width>391</width>
+        <height>171</height>
+       </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::MultiSelection</enum>
+      </property>
+      <property name="resizeMode">
+       <enum>QListView::Adjust</enum>
+      </property>
+      <property name="uniformItemSizes">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="appendageNumber">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>160</y>
+        <width>48</width>
+        <height>27</height>
+       </rect>
       </property>
      </widget>
     </widget>
-   </widget>
-   <widget class="QPushButton" name="copyButton">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>150</y>
-      <width>71</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Copy 📋</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pasteButton">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>150</y>
-      <width>71</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Paste 📋</string>
-    </property>
    </widget>
   </widget>
   <action name="actionTest_Menu_Item_One">

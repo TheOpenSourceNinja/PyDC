@@ -13,7 +13,6 @@ class gui:
 		self.app = QApplication( [] )
 		self.ui = uic.loadUi( "mainWindow.ui" )
 		self.ui.show()
-		self.addAppendagePopup = uic.loadUi( "addAppendage.ui" )
 		
 		self.clipboard = self.app.clipboard()
 		
@@ -31,7 +30,8 @@ class gui:
 		self.ui.weightRadioOOM.toggled.connect( self.weightRadioOOMToggled )
 		self.ui.weightRadioExact.toggled.connect( self.weightRadioExactToggled )
 		self.ui.weightRadioUnspecified.toggled.connect( self.weightRadioUnspecifiedToggled )
-		self.ui.addAppendage.clicked.connect( self.addAppendagePopup.show )
+		self.ui.addAppendage.clicked.connect( self.addAppendageToList )
+		self.ui.deleteAppendage.clicked.connect( self.deleteAppendages )
 		
 		#Things wouldn't look right if we don't call these functions
 		self.speciesSelected( 0 )
@@ -46,9 +46,27 @@ class gui:
 		self.ui.width.addItems( self.translator.width )
 		self.ui.weightUnits.addItems( self.translator.weightUnit )
 		self.ui.weightMagnitude.addItems( self.translator.weightMagnitude )
-		self.addAppendagePopup.appendageTypes.addItems( self.translator.appendageType )
+		self.ui.appendageTypes.addItems( self.translator.appendageType )
 		
 		sys.exit( self.app.exec_() )
+	
+	def deleteAppendages( self ):
+		stuffToDelete = self.ui.appendageList.selectedItems()
+		for item in stuffToDelete:
+			self.ui.appendageList.takeItem( self.ui.appendageList.row( item ) )
+			del item #Does this need to be deleted explicitly? Qt documentation says yes but it's assuming C++ not Python.
+		
+	
+	def addAppendageToList( self ):
+		appendageTypeNum = self.ui.appendageTypes.currentIndex()
+		webbed = self.ui.webbedAppendage.isChecked()
+		oneMore = self.ui.oneMoreAppendage.isChecked()
+		oneLess = self.ui.oneLessAppendage.isChecked()
+		many = self.ui.manyAppendage.isChecked()
+		thisMany = self.ui.thisManyAppendage.isChecked()
+		thisManyNum = self.ui.appendageNumber.value()
+		variable = self.ui.variableAppendage.isChecked()
+		self.ui.appendageList.addItem( self.translator.encodeAppendage( appendageTypeNum, webbed, oneMore, oneLess, many, thisMany, thisManyNum, variable ) )
 		
 	def lengthRadioButtonsToggled( self, which ):
 		self.ui.lengthMagnitude.setEnabled( False )
@@ -191,6 +209,10 @@ class gui:
 		if( whichWeightType == 1 ):
 			weightNum = self.ui.weightMagnitude.currentIndex()
 		
+		appendages = []
+		for row in range( self.ui.appendageList.count() ):
+			appendages.append( self.ui.appendageList.item( row ).text() )
+		
 		encodedText = self.translator.encode(
 			self.ui.DCVersion.value(), #DC version
 			self.ui.species.currentIndex(),
@@ -205,7 +227,8 @@ class gui:
 			self.ui.width.currentIndex(),
 			whichWeightType,
 			weightNum,
-			self.ui.weightUnits.currentIndex()
+			self.ui.weightUnits.currentIndex(),
+			appendages
 		)
 		if( encodedText is not None ):
 			self.ui.DCTextBox.setPlainText( encodedText )

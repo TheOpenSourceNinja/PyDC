@@ -130,7 +130,7 @@ class DCTranslator:
 	
 	appendageType = [ "a|A pair of arms", "f|A pair of fore-limbs (e.g. limbs that can be used as both arms and legs", "h|A head", "k|A crest", "l|A pair of legs", "p|A pair of paddles, flukes, or fins", "t|A tail", "v|A pair of horns or spines on the head", "w|A pair of wings", "w'|A pair of wings that also act as arms, legs, or fore-limbs" ]
 	
-	appendageMod = [ "^|Appendage ends in a webbed hand or foot.", "+|One more than normal", "-|One less than normal", "!|I have many of these", "~|Variable", "<number>|I have this many of these" ]
+	appendageMod = [ "^|Appendage ends in a webbed hand or foot.", "+|One more than normal", "-|One less than normal", "!|I have many of these", "<number>|I have this many of these", "~|Variable" ]
 	
 	def decode( self, coded ):
 		"Accepts a single string as the argument. Processes it. Returns true if processing worked or false if there was an error."
@@ -142,7 +142,27 @@ class DCTranslator:
 		print( coded )
 		return True
 	
-	def encode( self, version, speciesNum, subSpeciesNum, subSubSpeciesNum, subSubSubSpeciesNum, genderNum, lengthType, lengthNum, lengthUnitNum, lengthModifiers, widthNum, weightType, weightNum, weightUnitNum ):
+	#Split this into a separate function so the GUI can display a list of appendages
+	def encodeAppendage( self, appendageTypeNum, webbed, oneMore, oneLess, many, thisMany, thisManyNum, variable ):
+		result = ""
+		
+		result += self.appendageType[ appendageTypeNum ][ :self.appendageType[ appendageTypeNum ].find( "|" ) ]
+		if( webbed ):
+			result += self.appendageMod[ 0 ][ :self.appendageMod[ 0 ].find( "|" ) ]
+		if( oneMore ):
+			result += self.appendageMod[ 1 ][ :self.appendageMod[ 1 ].find( "|" ) ]
+		if( oneLess ):
+			result += self.appendageMod[ 2 ][ :self.appendageMod[ 2 ].find( "|" ) ]
+		if( many ):
+			result += self.appendageMod[ 3 ][ :self.appendageMod[ 3 ].find( "|" ) ]
+		if( thisMany ):
+			result += str( thisManyNum )
+		if( variable ):
+			result += self.appendageMod[ 5 ][ :self.appendageMod[ 5 ].find( "|" ) ]
+		
+		return result
+	
+	def encode( self, version, speciesNum, subSpeciesNum, subSubSpeciesNum, subSubSubSpeciesNum, genderNum, lengthType, lengthNum, lengthUnitNum, lengthModifiers, widthNum, weightType, weightNum, weightUnitNum, appendages ):
 		"Accepts several arguments. Processes them into a string. Invalid arguments are ignored."
 		
 		result = "DC"
@@ -194,6 +214,11 @@ class DCTranslator:
 				else: #Exact measure
 					result += str( weightNum )
 					result += self.weightUnit[ weightUnitNum ][ :self.weightUnit[ weightUnitNum ].find( "|" ) ]
+			
+			if( len( appendages ) > 0 ):
+				result += " P"
+				for a in appendages:
+					result += a
 			
 		elif( version > 2 ):
 			result += str( version )
