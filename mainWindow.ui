@@ -230,7 +230,7 @@
       <widget class="QGroupBox" name="lengthModArms">
        <property name="geometry">
         <rect>
-         <x>30</x>
+         <x>10</x>
          <y>30</y>
          <width>121</width>
          <height>31</height>
@@ -259,7 +259,7 @@
       <widget class="QGroupBox" name="lengthModLegs">
        <property name="geometry">
         <rect>
-         <x>30</x>
+         <x>10</x>
          <y>60</y>
          <width>121</width>
          <height>31</height>
@@ -288,14 +288,14 @@
       <widget class="QGroupBox" name="lengthModNeckAndHead">
        <property name="geometry">
         <rect>
-         <x>30</x>
+         <x>10</x>
          <y>90</y>
-         <width>161</width>
+         <width>181</width>
          <height>31</height>
         </rect>
        </property>
        <property name="title">
-        <string>Neck &amp; Head</string>
+        <string>Neck &amp;&amp; Head</string>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -306,7 +306,7 @@
        <widget class="QSpinBox" name="neckAndHeadLength">
         <property name="geometry">
          <rect>
-          <x>110</x>
+          <x>130</x>
           <y>0</y>
           <width>48</width>
           <height>27</height>
@@ -650,6 +650,70 @@
       </property>
       <property name="correctionMode">
        <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_7">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>160</y>
+       <width>381</width>
+       <height>171</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Appendages</string>
+     </property>
+     <widget class="QListView" name="appendageList">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>60</y>
+        <width>381</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>List of appendages. Leave empty if you have a normal set of limbs for your species</string>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
+      <property name="dragEnabled">
+       <bool>true</bool>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::MultiSelection</enum>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="addAppendage">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>0</y>
+        <width>271</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Add new appendage 🆕</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="deleteAppendage">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>30</y>
+        <width>271</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Delete appendage(s) ␡</string>
       </property>
      </widget>
     </widget>

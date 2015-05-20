@@ -13,6 +13,7 @@ class gui:
 		self.app = QApplication( [] )
 		self.ui = uic.loadUi( "mainWindow.ui" )
 		self.ui.show()
+		self.addAppendagePopup = uic.loadUi( "addAppendage.ui" )
 		
 		self.clipboard = self.app.clipboard()
 		
@@ -30,6 +31,7 @@ class gui:
 		self.ui.weightRadioOOM.toggled.connect( self.weightRadioOOMToggled )
 		self.ui.weightRadioExact.toggled.connect( self.weightRadioExactToggled )
 		self.ui.weightRadioUnspecified.toggled.connect( self.weightRadioUnspecifiedToggled )
+		self.ui.addAppendage.clicked.connect( self.addAppendagePopup.show )
 		
 		#Things wouldn't look right if we don't call these functions
 		self.speciesSelected( 0 )
@@ -44,6 +46,7 @@ class gui:
 		self.ui.width.addItems( self.translator.width )
 		self.ui.weightUnits.addItems( self.translator.weightUnit )
 		self.ui.weightMagnitude.addItems( self.translator.weightMagnitude )
+		self.addAppendagePopup.appendageTypes.addItems( self.translator.appendageType )
 		
 		sys.exit( self.app.exec_() )
 		

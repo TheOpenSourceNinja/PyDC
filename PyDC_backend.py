@@ -128,6 +128,10 @@ class DCTranslator:
 	
 	weightMagnitude = [ "+++!|Black hole", "+++|Massive", "++|Obese", "+|Over-weight", "|Normal", "-|Under-weight", "--|Buoyant", "---|Feather-weight", "---!|Weightless" ]
 	
+	appendageType = [ "a|A pair of arms", "f|A pair of fore-limbs (e.g. limbs that can be used as both arms and legs", "h|A head", "k|A crest", "l|A pair of legs", "p|A pair of paddles, flukes, or fins", "t|A tail", "v|A pair of horns or spines on the head", "w|A pair of wings", "w'|A pair of wings that also act as arms, legs, or fore-limbs" ]
+	
+	appendageMod = [ "^|Appendage ends in a webbed hand or foot.", "+|One more than normal", "-|One less than normal", "!|I have many of these", "~|Variable", "<number>|I have this many of these" ]
+	
 	def decode( self, coded ):
 		"Accepts a single string as the argument. Processes it. Returns true if processing worked or false if there was an error."
 		if( type( coded ) is not str ):
