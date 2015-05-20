@@ -115,8 +115,8 @@
       <rect>
        <x>10</x>
        <y>70</y>
-       <width>421</width>
-       <height>251</height>
+       <width>371</width>
+       <height>211</height>
       </rect>
      </property>
      <property name="title">
@@ -173,6 +173,9 @@
         <height>27</height>
        </rect>
       </property>
+      <property name="toolTip">
+       <string>Length (Order of Magnitude)</string>
+      </property>
      </widget>
      <widget class="QComboBox" name="lengthUnits">
       <property name="geometry">
@@ -183,6 +186,9 @@
         <height>27</height>
        </rect>
       </property>
+      <property name="toolTip">
+       <string>Length Units</string>
+      </property>
      </widget>
      <widget class="QSpinBox" name="length">
       <property name="geometry">
@@ -192,6 +198,9 @@
         <width>91</width>
         <height>27</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>Length (Exact Measure)</string>
       </property>
       <property name="correctionMode">
        <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
@@ -408,6 +417,9 @@
        </item>
        <item>
         <widget class="QComboBox" name="subSpecies">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="toolTip">
           <string>Subspecies</string>
          </property>
@@ -421,6 +433,9 @@
        </item>
        <item>
         <widget class="QComboBox" name="subSubSpecies">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="toolTip">
           <string>SubSubSpecies</string>
          </property>
@@ -434,6 +449,9 @@
        </item>
        <item>
         <widget class="QComboBox" name="subSubSubSpecies">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="toolTip">
           <string>SubSubSubSpecies</string>
          </property>
@@ -451,8 +469,8 @@
     <widget class="QGroupBox" name="groupBox_3">
      <property name="geometry">
       <rect>
-       <x>650</x>
-       <y>70</y>
+       <x>260</x>
+       <y>280</y>
        <width>111</width>
        <height>51</height>
       </rect>
@@ -512,6 +530,126 @@
       </property>
       <property name="value">
        <number>2</number>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>290</y>
+       <width>241</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Width</string>
+     </property>
+     <widget class="QComboBox" name="width">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>0</y>
+        <width>181</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_6">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>70</y>
+       <width>371</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Weight</string>
+     </property>
+     <widget class="QRadioButton" name="weightRadioOOM">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>171</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Order of Magnitude</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="weightRadioExact">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>131</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Exact Measure</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="weightRadioUnspecified">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>117</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Unspecified</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="weightMagnitude">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>10</y>
+        <width>131</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Weight (Order of Magnitude)</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="weightUnits">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>40</y>
+        <width>85</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Weight Units</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="weight">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>40</y>
+        <width>91</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Weight (Exact Measure)</string>
+      </property>
+      <property name="correctionMode">
+       <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
       </property>
      </widget>
     </widget>

@@ -27,16 +27,23 @@ class gui:
 		self.ui.lengthRadioOOM.toggled.connect( self.lengthRadioOOMToggled )
 		self.ui.lengthRadioExact.toggled.connect( self.lengthRadioExactToggled )
 		self.ui.lengthRadioUnspecified.toggled.connect( self.lengthRadioUnspecifiedToggled )
+		self.ui.weightRadioOOM.toggled.connect( self.weightRadioOOMToggled )
+		self.ui.weightRadioExact.toggled.connect( self.weightRadioExactToggled )
+		self.ui.weightRadioUnspecified.toggled.connect( self.weightRadioUnspecifiedToggled )
 		
 		#Things wouldn't look right if we don't call these functions
 		self.speciesSelected( 0 )
-		self.lengthRadioButtonsToggled( 0 ) #0 = Unspecified. Since the 'Unspecified' radio button is selected by default when the program starts, it doesn't call this function, so we do.
+		self.lengthRadioButtonsToggled( 0 ) #0 = Unspecified. Since the 'Unspecified' radio button is selected by default when the program starts, it doesn't call this function initially, so we do.
+		self.weightRadioButtonsToggled( 0 ) #0 = Unspecified. Since the 'Unspecified' radio button is selected by default when the program starts, it doesn't call this function initially, so we do.
 		
 		#Filling in combo boxes
 		self.ui.species.addItems( self.translator.species )
 		self.ui.gender.addItems( self.translator.gender )
-		self.ui.lengthUnits.addItems( self.translator.lengthUnits )
+		self.ui.lengthUnits.addItems( self.translator.lengthUnit )
 		self.ui.lengthMagnitude.addItems( self.translator.lengthMagnitude )
+		self.ui.width.addItems( self.translator.width )
+		self.ui.weightUnits.addItems( self.translator.weightUnit )
+		self.ui.weightMagnitude.addItems( self.translator.weightMagnitude )
 		
 		sys.exit( self.app.exec_() )
 		
@@ -53,6 +60,17 @@ class gui:
 			self.ui.lengthUnits.setEnabled( True )
 			self.ui.lengthModBox.setEnabled( True )
 	
+	def weightRadioButtonsToggled( self, which ):
+		self.ui.weightMagnitude.setEnabled( False )
+		self.ui.weight.setEnabled( False )
+		self.ui.weightUnits.setEnabled( False )
+		
+		if( which == 1 ): #Order of magnitude
+			self.ui.weightMagnitude.setEnabled( True )
+		elif( which == 2 ): #Exact length
+			self.ui.weight.setEnabled( True )
+			self.ui.weightUnits.setEnabled( True )
+	
 	def lengthRadioOOMToggled( self ):
 		self.lengthRadioButtonsToggled( 1 )
 	
@@ -62,31 +80,47 @@ class gui:
 	def lengthRadioUnspecifiedToggled( self ):
 		self.lengthRadioButtonsToggled( 0 )
 	
+	def weightRadioOOMToggled( self ):
+		self.weightRadioButtonsToggled( 1 )
+	
+	def weightRadioExactToggled( self ):
+		self.weightRadioButtonsToggled( 2 )
+	
+	def weightRadioUnspecifiedToggled( self ):
+		self.weightRadioButtonsToggled( 0 )
+	
 	def setSubSpeciesList( self, newList ):
+		self.ui.subSpecies.setCurrentIndex( 0 )
+		
+		self.setSubSubSpeciesList( [] )
+		
 		while self.ui.subSpecies.count() > 0:
 			self.ui.subSpecies.removeItem( 0 )
 			
 		if( len( newList ) > 0 ):
 			self.ui.subSpecies.setEnabled( True )
 			self.ui.subSpecies.addItems( newList )
-			#self.subSpeciesSelected( 0 )
 		else:
 			self.ui.subSpecies.setEnabled( False )
-			self.ui.subSubSpecies.setEnabled( False )
 	
 	def setSubSubSpeciesList( self, newList ):
+		self.ui.subSubSpecies.setCurrentIndex( 0 )
+		
+		self.setSubSubSubSpeciesList( [] )
+		
 		while self.ui.subSubSpecies.count() > 0:
 			self.ui.subSubSpecies.removeItem( 0 )
 				
 		if( len( newList ) > 0 ):
 			self.ui.subSubSpecies.setEnabled( True )
 			self.ui.subSubSpecies.addItems( newList )
-			#self.subSubSpeciesSelected( 0 )
 		else:
 			self.ui.subSubSpecies.setEnabled( False )
-			self.ui.subSubSubSpecies.setEnabled( False )
+			self.setSubSubSubSpeciesList( [] )
 	
 	def setSubSubSubSpeciesList( self, newList ):
+		self.ui.subSubSubSpecies.setCurrentIndex( 0 )
+		
 		while self.ui.subSubSubSpecies.count() > 0:
 			self.ui.subSubSubSpecies.removeItem( 0 )
 				
@@ -134,15 +168,25 @@ class gui:
 		lengthModifiers = []
 		if( self.ui.lengthModBox.isEnabled() and self.ui.lengthModBox.isChecked() ):
 			if( self.ui.lengthModArms.isChecked() ):
-				lengthModifiers.append( [ self.ui.armLength.value(), self.translator.lengthMods.index( "a" ) ] )
+				lengthModifiers.append( [ self.ui.armLength.value(), self.translator.lengthMod.index( "a|Arms" ) ] )
 			if( self.ui.lengthModLegs.isChecked() ):
-				lengthModifiers.append( [ self.ui.legLength.value(), self.translator.lengthMods.index( "l" ) ] )
+				lengthModifiers.append( [ self.ui.legLength.value(), self.translator.lengthMod.index( "l|Legs" ) ] )
 			if( self.ui.lengthModNeckAndHead.isChecked() ):
-				lengthModifiers.append( [ self.ui.neckAndHeadLength.value(), self.translator.lengthMods.index( "n" ) ] )
+				lengthModifiers.append( [ self.ui.neckAndHeadLength.value(), self.translator.lengthMod.index( "n|Head and neck" ) ] )
 			if( self.ui.lengthModTail.isChecked() ):
-				lengthModifiers.append( [ self.ui.tailLength.value(), self.translator.lengthMods.index( "t" ) ] )
+				lengthModifiers.append( [ self.ui.tailLength.value(), self.translator.lengthMod.index( "t|Tail" ) ] )
 			if( self.ui.lengthModWings.isChecked() ):
-				lengthModifiers.append( [ self.ui.wingLength.value(), self.translator.lengthMods.index( "w" ) ] )
+				lengthModifiers.append( [ self.ui.wingLength.value(), self.translator.lengthMod.index( "w|Wingspan" ) ] )
+		
+		whichWeightType = 0
+		if( self.ui.weightRadioOOM.isChecked() ):
+			whichWeightType = 1
+		elif( self.ui.weightRadioExact.isChecked() ):
+			whichWeightType = 2
+			
+		weightNum = self.ui.weight.value()
+		if( whichWeightType == 1 ):
+			weightNum = self.ui.weightMagnitude.currentIndex()
 		
 		encodedText = self.translator.encode(
 			self.ui.DCVersion.value(), #DC version
@@ -154,7 +198,11 @@ class gui:
 			whichLengthType,
 			lengthNum,
 			self.ui.lengthUnits.currentIndex(),
-			lengthModifiers
+			lengthModifiers,
+			self.ui.width.currentIndex(),
+			whichWeightType,
+			weightNum,
+			self.ui.weightUnits.currentIndex()
 		)
 		if( encodedText is not None ):
 			self.ui.DCTextBox.setPlainText( encodedText )
