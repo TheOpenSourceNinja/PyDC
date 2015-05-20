@@ -125,7 +125,10 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>4</number>
+    </property>
+    <property name="movable">
+     <bool>true</bool>
     </property>
     <widget class="QWidget" name="tabVersion">
      <attribute name="title">
@@ -789,13 +792,231 @@
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="tabSkinType">
+     <attribute name="title">
+      <string>Skin type</string>
+     </attribute>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>111</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Main skin type:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="skin">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>0</y>
+        <width>621</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="geometry">
+       <rect>
+        <x>9</x>
+        <y>39</y>
+        <width>731</width>
+        <height>171</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Body parts with different skin types:</string>
+      </property>
+      <widget class="QCheckBox" name="armsHaveDifferentSkin">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>61</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Arms</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="bellyHasDifferentSkin">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>61</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Belly</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="headHasDifferentSkin">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>100</y>
+         <width>61</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Head</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="legsHaveDifferentSkin">
+       <property name="geometry">
+        <rect>
+         <x>360</x>
+         <y>20</y>
+         <width>61</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Legs</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="neckHasDifferentSkin">
+       <property name="geometry">
+        <rect>
+         <x>360</x>
+         <y>60</y>
+         <width>61</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Neck</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="tailHasDifferentSkin">
+       <property name="geometry">
+        <rect>
+         <x>360</x>
+         <y>100</y>
+         <width>51</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Tail</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="wingsHaveDifferentSkin">
+       <property name="geometry">
+        <rect>
+         <x>360</x>
+         <y>140</y>
+         <width>71</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Wings</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="armSkin">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>20</y>
+         <width>251</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="bellySkin">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>60</y>
+         <width>251</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="headSkin">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>100</y>
+         <width>251</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="legSkin">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>430</x>
+         <y>20</y>
+         <width>301</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="neckSkin">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>430</x>
+         <y>60</y>
+         <width>301</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="tailSkin">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>430</x>
+         <y>100</y>
+         <width>301</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="wingSkin">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>430</x>
+         <y>140</y>
+         <width>301</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </widget>
    </widget>
   </widget>
-  <action name="actionTest_Menu_Item_One">
-   <property name="text">
-    <string>Test Menu Item One</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
