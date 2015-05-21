@@ -132,6 +132,10 @@ class DCTranslator:
 	
 	appendageMod = [ "^|Appendage ends in a webbed hand or foot.", "+|One more than normal", "-|One less than normal", "!|I have many of these", "<number>|I have this many of these", "~|Variable" ]
 	
+	skinType = [ "", "b|Bark", "c|Cellulose", "e|Exoskeleton (shells, calcium carbonate)", "f|feathers", "h|Hide", "k|Skin", "l|Leather", "m|Metal", "r|Rock (Stone)", "s|Scales", "u|Fur", "x|Crystals", "|None (just bones)" ]
+	
+	appendagesThatCanHaveDifferentSkins = [ "a|Arms", "b|Belly", "h|Head", "l|Legs", "n|Neck", "t|Tail", "w|Wings" ]
+	
 	def decode( self, coded ):
 		"Accepts a single string as the argument. Processes it. Returns true if processing worked or false if there was an error."
 		if( type( coded ) is not str ):
@@ -162,7 +166,7 @@ class DCTranslator:
 		
 		return result
 	
-	def encode( self, version, speciesNum, subSpeciesNum, subSubSpeciesNum, subSubSubSpeciesNum, genderNum, lengthType, lengthNum, lengthUnitNum, lengthModifiers, widthNum, weightType, weightNum, weightUnitNum, appendages ):
+	def encode( self, version, speciesNum, subSpeciesNum, subSubSpeciesNum, subSubSubSpeciesNum, genderNum, lengthType, lengthNum, lengthUnitNum, lengthModifiers, widthNum, weightType, weightNum, weightUnitNum, appendages, mainSkinTypeNum, appendageSkins ):
 		"Accepts several arguments. Processes them into a string. Invalid arguments are ignored."
 		
 		result = "DC"
@@ -200,6 +204,8 @@ class DCTranslator:
 					if( len( lm ) == 2 ):
 						result += str( lm[ 0 ] )
 						result += self.lengthMod[ lm[ 1 ] ][ :self.lengthMod[ lm[ 1 ] ].find( "|" ) ]
+					else:
+						print( "Error: lengthModifiers must be a list of 2-tuples.", file=sys.stderr )
 			
 			#Width
 			if( self.width[ widthNum ] != "" ):
@@ -215,10 +221,24 @@ class DCTranslator:
 					result += str( weightNum )
 					result += self.weightUnit[ weightUnitNum ][ :self.weightUnit[ weightUnitNum ].find( "|" ) ]
 			
+			#Appendages
 			if( len( appendages ) > 0 ):
 				result += " P"
 				for a in appendages:
 					result += a
+			
+			#Skins
+			if( self.skinType[ mainSkinTypeNum ] != "" ):
+				result += " Sk"
+				result += self.skinType[ mainSkinTypeNum ][ :self.skinType[ mainSkinTypeNum ].find( "|" ) ]
+				
+				for askin in appendageSkins:
+					result += ","
+					if( len( askin ) == 2 ):
+						result += self.appendagesThatCanHaveDifferentSkins[ askin[ 0 ] ][ :self.appendagesThatCanHaveDifferentSkins[ askin[ 0 ] ].find( "|" ) ]
+						result += self.skinType[ askin[ 1 ] ][ :self.skinType[ askin[ 1 ] ].find( "|" ) ]
+					else:
+						print( "Error: appendageSkins must be a list of 2-tuples.", file=sys.stderr )
 			
 		elif( version > 2 ):
 			result += str( version )

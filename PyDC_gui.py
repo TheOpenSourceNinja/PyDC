@@ -32,6 +32,13 @@ class gui:
 		self.ui.weightRadioUnspecified.toggled.connect( self.weightRadioUnspecifiedToggled )
 		self.ui.addAppendage.clicked.connect( self.addAppendageToList )
 		self.ui.deleteAppendage.clicked.connect( self.deleteAppendages )
+		self.ui.armsHaveDifferentSkin.stateChanged.connect( self.handleSkinCheckboxes )
+		self.ui.bellyHasDifferentSkin.stateChanged.connect( self.handleSkinCheckboxes )
+		self.ui.headHasDifferentSkin.stateChanged.connect( self.handleSkinCheckboxes )
+		self.ui.legsHaveDifferentSkin.stateChanged.connect( self.handleSkinCheckboxes )
+		self.ui.neckHasDifferentSkin.stateChanged.connect( self.handleSkinCheckboxes )
+		self.ui.tailHasDifferentSkin.stateChanged.connect( self.handleSkinCheckboxes )
+		self.ui.wingsHaveDifferentSkin.stateChanged.connect( self.handleSkinCheckboxes )
 		
 		#Things wouldn't look right if we don't call these functions
 		self.speciesSelected( 0 )
@@ -47,8 +54,25 @@ class gui:
 		self.ui.weightUnits.addItems( self.translator.weightUnit )
 		self.ui.weightMagnitude.addItems( self.translator.weightMagnitude )
 		self.ui.appendageTypes.addItems( self.translator.appendageType )
+		self.ui.skin.addItems( self.translator.skinType )
+		self.ui.armSkin.addItems( self.translator.skinType )
+		self.ui.bellySkin.addItems( self.translator.skinType )
+		self.ui.headSkin.addItems( self.translator.skinType )
+		self.ui.legSkin.addItems( self.translator.skinType )
+		self.ui.neckSkin.addItems( self.translator.skinType )
+		self.ui.tailSkin.addItems( self.translator.skinType )
+		self.ui.wingSkin.addItems( self.translator.skinType )
 		
 		sys.exit( self.app.exec_() )
+	
+	def handleSkinCheckboxes( self ):
+		self.ui.armSkin.setEnabled( self.ui.armsHaveDifferentSkin.isChecked() )
+		self.ui.bellySkin.setEnabled( self.ui.bellyHasDifferentSkin.isChecked() )
+		self.ui.headSkin.setEnabled( self.ui.headHasDifferentSkin.isChecked() )
+		self.ui.legSkin.setEnabled( self.ui.legsHaveDifferentSkin.isChecked() )
+		self.ui.neckSkin.setEnabled( self.ui.neckHasDifferentSkin.isChecked() )
+		self.ui.tailSkin.setEnabled( self.ui.tailHasDifferentSkin.isChecked() )
+		self.ui.wingSkin.setEnabled( self.ui.wingsHaveDifferentSkin.isChecked() )
 	
 	def deleteAppendages( self ):
 		stuffToDelete = self.ui.appendageList.selectedItems()
@@ -148,7 +172,6 @@ class gui:
 		if( len( newList ) > 0 ):
 			self.ui.subSubSubSpecies.setEnabled( True )
 			self.ui.subSubSubSpecies.addItems( newList )
-			#self.subSubSubSpeciesSelected( 0 )
 		else:
 			self.ui.subSubSubSpecies.setEnabled( False )
 	
@@ -213,8 +236,27 @@ class gui:
 		for row in range( self.ui.appendageList.count() ):
 			appendages.append( self.ui.appendageList.item( row ).text() )
 		
+		appendageSkins = []
+		if( self.ui.armsHaveDifferentSkin.isChecked() ):
+			appendageSkins.append( [ self.translator.appendagesThatCanHaveDifferentSkins.index( "a|Arms" ), self.ui.armSkin.currentIndex() ] )
+		if( self.ui.bellyHasDifferentSkin.isChecked() ):
+			appendageSkins.append( [ self.translator.appendagesThatCanHaveDifferentSkins.index( "b|Belly" ), self.ui.bellySkin.currentIndex() ] )
+		if( self.ui.headHasDifferentSkin.isChecked() ):
+			appendageSkins.append( [ self.translator.appendagesThatCanHaveDifferentSkins.index( "h|Head" ), self.ui.headSkin.currentIndex() ] )
+		if( self.ui.legsHaveDifferentSkin.isChecked() ):
+			appendageSkins.append( [ self.translator.appendagesThatCanHaveDifferentSkins.index( "l|Legs" ), self.ui.legSkin.currentIndex() ] )
+		if( self.ui.neckHasDifferentSkin.isChecked() ):
+			appendageSkins.append( [ self.translator.appendagesThatCanHaveDifferentSkins.index( "n|Neck" ), self.ui.neckSkin.currentIndex() ] )
+		if( self.ui.tailHasDifferentSkin.isChecked() ):
+			appendageSkins.append( [ self.translator.appendagesThatCanHaveDifferentSkins.index( "t|Tail" ), self.ui.tailSkin.currentIndex() ] )
+		if( self.ui.wingsHaveDifferentSkin.isChecked() ):
+			appendageSkins.append( [ self.translator.appendagesThatCanHaveDifferentSkins.index( "w|Wings" ), self.ui.wingSkin.currentIndex() ] )
+		
+		#for askin in appendageSkins:
+		#	print( askin[0], askin[1] )
+		
 		encodedText = self.translator.encode(
-			self.ui.DCVersion.value(), #DC version
+			self.ui.DCVersion.value(),
 			self.ui.species.currentIndex(),
 			self.ui.subSpecies.currentIndex(),
 			self.ui.subSubSpecies.currentIndex(),
@@ -228,7 +270,9 @@ class gui:
 			whichWeightType,
 			weightNum,
 			self.ui.weightUnits.currentIndex(),
-			appendages
+			appendages,
+			self.ui.skin.currentIndex(),
+			appendageSkins
 		)
 		if( encodedText is not None ):
 			self.ui.DCTextBox.setPlainText( encodedText )

@@ -125,7 +125,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>0</number>
     </property>
     <property name="movable">
      <bool>true</bool>
@@ -258,6 +258,24 @@
         </widget>
        </item>
       </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabGender">
+     <attribute name="title">
+      <string>Gender</string>
+     </attribute>
+     <widget class="QComboBox" name="gender">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>741</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Gender</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tabLength">
@@ -528,24 +546,6 @@
         <width>741</width>
         <height>31</height>
        </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tabGender">
-     <attribute name="title">
-      <string>Gender</string>
-     </attribute>
-     <widget class="QComboBox" name="gender">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>741</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>Gender</string>
       </property>
      </widget>
     </widget>
