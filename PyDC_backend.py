@@ -134,7 +134,13 @@ class DCTranslator:
 	
 	skinType = [ "", "b|Bark", "c|Cellulose", "e|Exoskeleton (shells, calcium carbonate)", "f|feathers", "h|Hide", "k|Skin", "l|Leather", "m|Metal", "r|Rock (Stone)", "s|Scales", "u|Fur", "x|Crystals", "|None (just bones)" ]
 	
-	appendagesThatCanHaveDifferentSkins = [ "a|Arms", "b|Belly", "h|Head", "l|Legs", "n|Neck", "t|Tail", "w|Wings" ]
+	appendageThatCanHaveDifferentSkin = [ "a|Arms", "b|Belly", "h|Head", "l|Legs", "n|Neck", "t|Tail", "w|Wings" ]
+	
+	color = [ "ag|Silver (Argent)", "am|Amber", "aq|Aquamarine", "au|Gold", "bk|Black", "bl|Blue", "br|Brown", "bs|Brass", "bz|Bronze", "ch|Chromium", "cu|Copper (Cuprum)", "cy|Cyan", "eb|Ebony", "fs|Flesh (Human)", "gr|Green", "gy|Gray", "hg|Mercury/Quicksilver (Hydrargyrum)", "in|Indigo", "iv|Ivory", "ja|Jade", "ma|Magenta", "mv|Mauve", "or|Orange", "pi|Pink", "pu|Purple", "rb|Rainbow (violet, indigo, blue, green, yellow, orange, red)", "re|Red", "ta|Tan", "tu|Turquoise", "mb|Umber", "vi|Violet", "wh|White", "ye|Yellow", "~|Chameleonic", "?|Unknown", "|Colorless (ice, crystal, or invisible creatures" ]
+	
+	colorMod1 = [ "+", "-", "^", "_", "'", "%", "!" ]
+	
+	colorMod2 = [ "|", "=", ":", "*", "@", "\\", "/", "#", "&", "&1", ">" ]
 	
 	def decode( self, coded ):
 		"Accepts a single string as the argument. Processes it. Returns true if processing worked or false if there was an error."
@@ -235,7 +241,7 @@ class DCTranslator:
 				for askin in appendageSkins:
 					result += ","
 					if( len( askin ) == 2 ):
-						result += self.appendagesThatCanHaveDifferentSkins[ askin[ 0 ] ][ :self.appendagesThatCanHaveDifferentSkins[ askin[ 0 ] ].find( "|" ) ]
+						result += self.appendageThatCanHaveDifferentSkin[ askin[ 0 ] ][ :self.appendageThatCanHaveDifferentSkin[ askin[ 0 ] ].find( "|" ) ]
 						result += self.skinType[ askin[ 1 ] ][ :self.skinType[ askin[ 1 ] ].find( "|" ) ]
 					else:
 						print( "Error: appendageSkins must be a list of 2-tuples.", file=sys.stderr )

@@ -238,19 +238,19 @@ class gui:
 		
 		appendageSkins = []
 		if( self.ui.armsHaveDifferentSkin.isChecked() ):
-			appendageSkins.append( [ self.translator.appendagesThatCanHaveDifferentSkins.index( "a|Arms" ), self.ui.armSkin.currentIndex() ] )
+			appendageSkins.append( [ self.translator.appendageThatCanHaveDifferentSkin.index( "a|Arms" ), self.ui.armSkin.currentIndex() ] )
 		if( self.ui.bellyHasDifferentSkin.isChecked() ):
-			appendageSkins.append( [ self.translator.appendagesThatCanHaveDifferentSkins.index( "b|Belly" ), self.ui.bellySkin.currentIndex() ] )
+			appendageSkins.append( [ self.translator.appendageThatCanHaveDifferentSkin.index( "b|Belly" ), self.ui.bellySkin.currentIndex() ] )
 		if( self.ui.headHasDifferentSkin.isChecked() ):
-			appendageSkins.append( [ self.translator.appendagesThatCanHaveDifferentSkins.index( "h|Head" ), self.ui.headSkin.currentIndex() ] )
+			appendageSkins.append( [ self.translator.appendageThatCanHaveDifferentSkin.index( "h|Head" ), self.ui.headSkin.currentIndex() ] )
 		if( self.ui.legsHaveDifferentSkin.isChecked() ):
-			appendageSkins.append( [ self.translator.appendagesThatCanHaveDifferentSkins.index( "l|Legs" ), self.ui.legSkin.currentIndex() ] )
+			appendageSkins.append( [ self.translator.appendageThatCanHaveDifferentSkin.index( "l|Legs" ), self.ui.legSkin.currentIndex() ] )
 		if( self.ui.neckHasDifferentSkin.isChecked() ):
-			appendageSkins.append( [ self.translator.appendagesThatCanHaveDifferentSkins.index( "n|Neck" ), self.ui.neckSkin.currentIndex() ] )
+			appendageSkins.append( [ self.translator.appendageThatCanHaveDifferentSkin.index( "n|Neck" ), self.ui.neckSkin.currentIndex() ] )
 		if( self.ui.tailHasDifferentSkin.isChecked() ):
-			appendageSkins.append( [ self.translator.appendagesThatCanHaveDifferentSkins.index( "t|Tail" ), self.ui.tailSkin.currentIndex() ] )
+			appendageSkins.append( [ self.translator.appendageThatCanHaveDifferentSkin.index( "t|Tail" ), self.ui.tailSkin.currentIndex() ] )
 		if( self.ui.wingsHaveDifferentSkin.isChecked() ):
-			appendageSkins.append( [ self.translator.appendagesThatCanHaveDifferentSkins.index( "w|Wings" ), self.ui.wingSkin.currentIndex() ] )
+			appendageSkins.append( [ self.translator.appendageThatCanHaveDifferentSkin.index( "w|Wings" ), self.ui.wingSkin.currentIndex() ] )
 		
 		#for askin in appendageSkins:
 		#	print( askin[0], askin[1] )
