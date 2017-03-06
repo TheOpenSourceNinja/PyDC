@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 #This file is the back-end for the GUI and CLI programs.
 
+import sys;
+
 class DCTranslator:
 	species = [ "", "D|Dragons", "H|Humanoids", "A|Amphibians", "B|Birds", "C|Crustaceans", "S|Dinosaurs", "E|Extraterrestrials", "F|Fish", "I|Insects", "L|Legends", "M|Mammals", "M|Molluscs", "Y|Mythical", "P|Plants", "R|Reptiles", "Q|Spirits", "U|Undead", "~|Shape Changers" ]
 	subSpecies = [
@@ -143,14 +145,30 @@ class DCTranslator:
 	colorMod2 = [ "|", "=", ":", "*", "@", "\\", "/", "#", "&", "&1", ">" ]
 	
 	def decode( self, coded ):
-		"Accepts a single string as the argument. Processes it. Returns true if processing worked or false if there was an error."
+		"Accepts a single string as the argument. Processes it. Returns a tuple, the first part of which is a Boolean indicating success and the second part of which is a string, the result of the decoding (also contains any relevant error messages)"
 		if( type( coded ) is not str ):
 			return False
 		
 		coded = coded.strip()
+		tags = coded.split( sep=" " );
 		
-		print( coded )
-		return True
+		result = str();
+		
+		versionIDAndSpeciesTag = tags[ 0 ]
+		#Version identifier - currently must be "DC2."
+		
+		print ( 'current trace function',  sys.gettrace() )
+		
+		versionID = versionIDAndSpeciesTag.partition( "." )[ 0 ].upper(); #In case we want to deal with multiple versions in some future update
+		speciesTag = versionIDAndSpeciesTag.partition( "." )[ 2 ]
+		if( versionID != "DC2" ):
+			result = "Code must start with version identifier"
+			print( result, file = sys.stderr )
+			return ( False, result );
+		else:
+			print( "blah" )
+		
+		return ( True, result );
 	
 	#Split this into a separate function so the GUI can display a list of appendages
 	def encodeAppendage( self, appendageTypeNum, webbed, oneMore, oneLess, many, thisMany, thisManyNum, variable ):
